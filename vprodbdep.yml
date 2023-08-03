@@ -17,8 +17,8 @@ spec:
       containers:
         - name: vprodb
           image: vprofile/vprofiledb:V1
-          args:
-            - "--ignore-db-dir=lost+found"
+#          args:
+#            - "--ignore-db-dir=lost+found"
           ports:
             - name: vprodb-port
               containerPort: 3306
@@ -36,7 +36,7 @@ spec:
       volumes:
       - name: db-volume
         awsElasticBlockStore:
-          volumeID: vol-09fccb92de819e88a
+          volumeID: vol-02dcd41abb56f8f60
           fsType: ext4
 
       initContainers:
