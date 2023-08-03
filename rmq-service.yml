@@ -1,0 +1,12 @@
+kind: Service                             # Defines to create Service type Object
+apiVersion: v1
+metadata:
+  name: vpromq01                # should be same as provided in the properties file
+spec:
+  ports:
+    - port: 15672                               # Containers port exposed
+      targetPort: vpromq-port                  # Pods port, as defined port name in deploy definition
+      protocol: TCP
+  selector:
+    app: vpromq                    # Apply this service to any pods which has the specific label
+  type: ClusterIP
