@@ -21,9 +21,9 @@ spec:
             - name: vproapp-port
               containerPort: 8080
       initContainers:
-        - name: init-dbReady
+        - name: init-dbready
           image: busybox
-          command: ["sh", "-c", "until nslookup vprodb; do echo waiting for db-ready; sleep 2; done"]
-        - name: init-memcacheReady
+          command: ['sh', '-c', 'until nslookup vprodb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for vprodb; sleep 2; done;']
+        - name: init-memcacheready
           image: busybox
-          command: ['sh', '-c', 'until nslookup vpromemcache; do echo waiting for memcache-ready; sleep 2; done']
+          command: ['sh', '-c', 'until nslookup vprocache01.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for vprocache01; sleep 2; done;']
